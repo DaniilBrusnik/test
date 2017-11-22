@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+body {
+  overflow: hidden;
+}
+mat-radio-button{
+  margin: 0 25px;
+}
+.data-table{
+  float: none !important
+}
+
+.pointer{
+  cursor: pointer;
+}
+.pagination{
+
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+.pagination li a{
+  position: relative;
+  float: left;
+  padding: 4px 6px;
+  cursor:pointer;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+

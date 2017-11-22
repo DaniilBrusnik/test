@@ -1,0 +1,77 @@
+
+<!--<ul *ngFor="let product of products; let first=first;">
+  <li *ngIf="!first">{{product}}</li>
+</ul>-->
+<a href="#" routerLink="/layout">Show layout</a>
+<div>
+<mat-card class="col-md-6 data-table" *ngFor="let table of  tabels">
+
+<div class="col-md-12">
+  <mat-radio-group [(ngModel)]="size">
+    Набор данных:   <mat-radio-button *ngFor="let size of sizes" (change)="onSelectionChange(size)" [value]="size">
+  {{size}}
+    </mat-radio-button>
+
+  </mat-radio-group>
+
+  <mat-form-field class="example-full-width">
+    <div class="col-md-6">
+      <input matInput type="text" [(ngModel)]="searchText"  placeholder="Search" >
+    </div>
+  </mat-form-field>
+</div>
+
+
+<div class="col-md-12" >
+  <table class="table  table-hover">
+    <tr *ngFor="let product of  data">
+      <th class="pointer" (click)="sorted('0')">
+        {{product.id}}
+        <i class="fa" [ngClass]="{'fa-sort': column != 'id', 'fa-sort-asc': (column == 'id' && isDesc), 'fa-sort-desc': (column == 'id' && !isDesc) }" aria-hidden="true"> </i>
+      </th>
+      <th class="pointer" (click)="sorted('1')">
+        {{product.name}}
+        <i class="fa" [ngClass]="{'fa-sort': column != 'name', 'fa-sort-asc': (column == 'name' && isDesc), 'fa-sort-desc': (column == 'name' && !isDesc) }" aria-hidden="true"> </i>
+      </th>
+      <th class="pointer" (click)="sorted('2')">
+        {{product.price}}
+
+        <i class="fa" [ngClass]="{'fa-sort': column != 'price', 'fa-sort-asc': (column == 'price' && isDesc), 'fa-sort-desc': (column == 'price' && !isDesc) }" aria-hidden="true"> </i>
+
+      </th>
+      <th class="pointer" (click)="sorted('3')">
+        {{product.quantity}}
+
+        <i class="fa" [ngClass]="{'fa-sort': column != 'quantity', 'fa-sort-asc': (column == 'quantity' && isDesc), 'fa-sort-desc': (column == 'quantity' && !isDesc) }" aria-hidden="true"> </i>
+
+      </th>
+    </tr>
+    <tr *ngFor="let item of pagedItems | sort: column| search  :searchText"  (click)="setClickedRow(item)" >
+      <td>{{item[0]}}</td>
+      <td>{{item[1]}}</td>
+      <td>{{item[2]}}</td>
+      <td>{{item[3]}}</td>
+    </tr>
+  </table>
+  Выбрано: {{selectedData}}
+  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+  </ul>
+</div>
+</mat-card>
+  <button mat-raised-button (click)="addTable()">Добавить ещё один</button>
+</div>
